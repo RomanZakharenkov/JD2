@@ -10,8 +10,12 @@ public class UserService {
 
     private static final UserService INSTANCE = new UserService();
 
-    public User getUser(Integer id) {
+    public User getUser(Long id) {
         return UserDao.getInstance().getById(id).get();
+    }
+
+    public void save(User user) {
+        UserDao.getInstance().save(user);
     }
 
     public static UserService getInstance() {

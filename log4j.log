@@ -1,0 +1,15 @@
+2018-10-22 13:47:39,053 INFO  - HHH000412: Hibernate Core {5.2.16.Final}
+2018-10-22 13:47:39,058 INFO  - HHH000206: hibernate.properties not found
+2018-10-22 13:47:41,143 INFO  - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-10-22 13:47:42,539 WARN  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-10-22 13:47:42,895 INFO  - HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/online_shop]
+2018-10-22 13:47:42,896 INFO  - HHH10001001: Connection properties: {user=postgres, password=****}
+2018-10-22 13:47:42,899 INFO  - HHH10001003: Autocommit mode: false
+2018-10-22 13:47:42,909 INFO  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2018-10-22 13:47:46,856 INFO  - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2018-10-22 13:47:48,977 INFO  - HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+2018-10-22 13:47:48,983 INFO  - HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@1edbc4d
+2018-10-22 13:47:55,263 WARN  - SQL Error: 0, SQLState: 23505
+2018-10-22 13:47:55,264 ERROR - ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "user_email_key"
+  Подробности: Ключ "(email)=(dmitriy@mail.ru)" уже существует.
+2018-10-22 13:47:55,272 INFO  - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/online_shop]
