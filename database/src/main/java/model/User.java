@@ -10,42 +10,41 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
+@Builder
 @Data
 @NoArgsConstructor
-@AllArgsConstructor(staticName = "of")
 @EqualsAndHashCode(of = "id")
+@AllArgsConstructor(staticName = "of")
 @Entity
 @Table(name = "user", schema = "shop")
-public class User extends BaseEntity<Long> {
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
     private Role role;
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "phone_number")
     private String number;
 
-    @Builder
-    public User(Long id, Role role, String firstName, String lastName, String email, String password, String number) {
-        super(id);
-        this.role = role;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.number = number;
-    }
 }

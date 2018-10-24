@@ -1,4 +1,7 @@
+import dao.ProductDao;
 import lombok.Cleanup;
+import model.Product;
+import model.ProductDetail;
 import model.Role;
 import model.User;
 import org.hibernate.Session;
@@ -9,12 +12,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        @Cleanup SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-        @Cleanup Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        User user = User.of(Role.USER, "Дмитрий", "Дмитриев", "dmitriy@mail.ru", "1234", "375292002121");
-        System.out.println(user);
-        session.save(user);
-        session.getTransaction().commit();
+        Product product = Product.builder()
+                .category_id(1)
+                .price(1000)
+                .productDetail(ProductDetail.of("Samsung", "UE32M5550AUXRU", "", ""))
+                .build();
+        ProductDao.getInstance().add(product);
+        System.out.println(product);
     }
 }
