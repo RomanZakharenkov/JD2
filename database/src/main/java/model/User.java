@@ -13,7 +13,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
 @Builder
 @Data
@@ -22,7 +25,7 @@ import javax.persistence.Table;
 @AllArgsConstructor(staticName = "of")
 @Entity
 @Table(name = "user", schema = "shop")
-public class User {
+public class User implements BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +41,7 @@ public class User {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
     @Column(name = "password", nullable = false)
@@ -47,4 +50,6 @@ public class User {
     @Column(name = "phone_number")
     private String number;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Review> reviews = new HashSet<>();
 }

@@ -15,5 +15,8 @@
     <!-- <property name="hbm2ddl.auto">update</property> -->
     <mapping class="model.User"/>
     <mapping class="model.Product"/>
+    <mapping class="model.Category"/>
+    <mapping class="model.Storage"/>
+    <mapping class="model.Review"/>
   </session-factory>
 </hibernate-configuration>

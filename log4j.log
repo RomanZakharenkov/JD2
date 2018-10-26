@@ -1,12 +1,12 @@
-2018-10-24 13:49:29,360 INFO  - HHH000412: Hibernate Core {5.2.16.Final}
-2018-10-24 13:49:29,368 INFO  - HHH000206: hibernate.properties not found
-2018-10-24 13:49:30,706 INFO  - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
-2018-10-24 13:49:31,410 WARN  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
-2018-10-24 13:49:31,459 INFO  - HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/online_shop]
-2018-10-24 13:49:31,459 INFO  - HHH10001001: Connection properties: {user=postgres, password=****}
-2018-10-24 13:49:31,460 INFO  - HHH10001003: Autocommit mode: false
-2018-10-24 13:49:31,466 INFO  - HHH000115: Hibernate connection pool size: 20 (min=1)
-2018-10-24 13:49:32,608 INFO  - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
-2018-10-24 13:49:33,691 INFO  - HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
-2018-10-24 13:49:33,697 INFO  - HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@1edbc4d
-2018-10-24 13:49:37,618 INFO  - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/online_shop]
+2018-10-27 00:16:47,535 INFO  - HHH000412: Hibernate Core {5.2.16.Final}
+2018-10-27 00:16:47,535 INFO  - HHH000206: hibernate.properties not found
+2018-10-27 00:16:48,222 INFO  - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-10-27 00:16:48,588 WARN  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-10-27 00:16:48,588 INFO  - HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/online_shop]
+2018-10-27 00:16:48,588 INFO  - HHH10001001: Connection properties: {user=postgres, password=****}
+2018-10-27 00:16:48,588 INFO  - HHH10001003: Autocommit mode: false
+2018-10-27 00:16:48,603 INFO  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2018-10-27 00:16:48,963 INFO  - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2018-10-27 00:16:49,666 INFO  - HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+2018-10-27 00:16:49,666 INFO  - HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@6939bf
+2018-10-27 00:17:37,547 INFO  - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/online_shop]

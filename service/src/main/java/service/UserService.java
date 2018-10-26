@@ -14,9 +14,9 @@ public class UserService {
         return UserDao.getInstance().getById(id).get();
     }
 
-    public void save(User user) {
-        UserDao.getInstance().save(user);
-    }
+//    public void save(User user) {
+//        UserDao.getInstance().save(user);
+//    }
 
     public static UserService getInstance() {
         return INSTANCE;
