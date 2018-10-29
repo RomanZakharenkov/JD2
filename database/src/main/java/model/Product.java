@@ -15,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -51,4 +53,13 @@ public class Product implements BaseEntity<Long> {
 
     @OneToMany(mappedBy = "product")
     private Set<Review> reviews = new HashSet<>();
+
+    @OneToMany(mappedBy = "product")
+    private Set<LineItem> lineItems;
+
+    @ManyToMany
+    @JoinTable(name = "favorite", schema = "shop",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<User> users = new HashSet<>();
 }

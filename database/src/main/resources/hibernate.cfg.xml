@@ -18,5 +18,7 @@
     <mapping class="model.Category"/>
     <mapping class="model.Storage"/>
     <mapping class="model.Review"/>
+    <mapping class="model.Order"/>
+    <mapping class="model.LineItem"/>
   </session-factory>
 </hibernate-configuration>
