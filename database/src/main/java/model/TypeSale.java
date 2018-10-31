@@ -7,5 +7,5 @@ import lombok.ToString;
 @Getter
 public enum TypeSale {
 
-    DISCOUNT, COUPON;
+    DISCOUNT, COUPON
 }

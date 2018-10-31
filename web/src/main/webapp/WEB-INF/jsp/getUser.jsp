@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Рома
-  Date: 14.10.2018
-  Time: 19:59
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,7 +5,7 @@
 </head>
 <body>
 <h2>HELLO!</h2><br>
-<%--<h2>${requestScope.user.id}</h2><br>--%>
+<h2>${requestScope.user.id}</h2><br>
 <h2>${requestScope.user.role.name}</h2><br>
 <h2>${requestScope.user.firstName}</h2><br>
 <h2>${requestScope.user.lastName}</h2><br>

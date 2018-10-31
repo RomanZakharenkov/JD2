@@ -3,8 +3,6 @@ package model;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Arrays;
-
 @ToString
 @Getter
 public enum Role {
@@ -16,5 +14,4 @@ public enum Role {
     Role(String name) {
         this.name = name;
     }
-
 }

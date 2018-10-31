@@ -16,7 +16,8 @@ CREATE TABLE shop.product (
 );
 
 CREATE TABLE shop.storage (
-  product_id BIGINT REFERENCES shop.product (id) PRIMARY KEY,
+  id         BIGSERIAL PRIMARY KEY,
+  product_id BIGINT REFERENCES shop.product (id),
   count      INTEGER
 );
 

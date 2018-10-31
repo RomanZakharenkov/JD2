@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +23,7 @@ import java.util.Set;
 
 @Builder
 @Data
+@ToString(exclude = "lineItems")
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @AllArgsConstructor(staticName = "of")
@@ -46,5 +48,4 @@ public class Order implements BaseEntity<Long> {
 
     @OneToMany(mappedBy = "order")
     private Set<LineItem> lineItems;
-
 }

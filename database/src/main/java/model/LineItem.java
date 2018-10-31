@@ -13,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Builder
@@ -39,7 +38,4 @@ public class LineItem implements BaseEntity<Long> {
 
     @Column(name = "count", nullable = false)
     private Integer count;
-
-
-
 }

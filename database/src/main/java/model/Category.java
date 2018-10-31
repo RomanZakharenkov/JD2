@@ -36,5 +36,4 @@ public class Category implements BaseEntity<Integer> {
 
     @OneToMany(mappedBy = "category")
     private Set<Product> products = new HashSet<>();
-
 }

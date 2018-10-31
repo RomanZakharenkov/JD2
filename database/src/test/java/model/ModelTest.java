@@ -26,13 +26,14 @@ public class ModelTest {
         Category category = Category.builder()
                 .name("TEST2")
                 .build();
+
         @Cleanup Session session = FACTORY.openSession();
         session.beginTransaction();
-        Serializable serializable = session.save(category);
 
+        Serializable saveCategoryId = session.save(category);
         session.evict(category);
+        Category categoryFind = session.find(Category.class, saveCategoryId);
 
-        Category categoryFind = session.find(Category.class, serializable);
         assertNotNull(categoryFind);
         session.getTransaction().commit();
     }
@@ -60,35 +61,36 @@ public class ModelTest {
         LineItem lineItem = LineItem.builder()
                 .count(100)
                 .build();
+
         @Cleanup Session session = FACTORY.openSession();
         session.beginTransaction();
 
-        Serializable serializable = session.save(user);
+        Serializable saveUserId = session.save(user);
         session.evict(user);
-        User userFind = session.find(User.class, serializable);
+        User userFind = session.find(User.class, saveUserId);
 
         order.setUser(userFind);
-        Serializable serializable1 = session.save(order);
+        Serializable saveOrderId = session.save(order);
         session.evict(order);
-        Order orderFind = session.find(Order.class, serializable1);
+        Order orderFind = session.find(Order.class, saveOrderId);
 
-        Serializable saveID = session.save(category);
+        Serializable saveCategoryId = session.save(category);
         session.evict(category);
-        Category categoryFind = session.find(Category.class, saveID);
+        Category categoryFind = session.find(Category.class, saveCategoryId);
 
         product.setCategory(categoryFind);
-        Serializable save = session.save(product);
+        Serializable saveProductId = session.save(product);
         session.evict(product);
-        Product productFind = session.find(Product.class, save);
+        Product productFind = session.find(Product.class, saveProductId);
 
         lineItem.setOrder(orderFind);
         lineItem.setProduct(productFind);
 
-        Serializable save1 = session.save(lineItem);
+        Serializable saveLineItemId = session.save(lineItem);
         session.evict(lineItem);
-        LineItem lineItem1 = session.find(LineItem.class, save1);
+        LineItem lineItemFind = session.find(LineItem.class, saveLineItemId);
 
-        assertNotNull(lineItem1);
+        assertNotNull(lineItemFind);
         session.getTransaction().commit();
     }
 
@@ -112,30 +114,31 @@ public class ModelTest {
                 .text("TEST")
                 .date(LocalDate.now())
                 .build();
+
         @Cleanup Session session = FACTORY.openSession();
         session.beginTransaction();
 
-        Serializable save1 = session.save(category);
+        Serializable saveCategoryId = session.save(category);
         session.evict(category);
-        Category category1 = session.find(Category.class, save1);
+        Category categoryFind = session.find(Category.class, saveCategoryId);
 
-        product.setCategory(category1);
-        Serializable save2 = session.save(product);
+        product.setCategory(categoryFind);
+        Serializable saveProductId = session.save(product);
         session.evict(product);
-        Product product1 = session.find(Product.class, save2);
+        Product productFind = session.find(Product.class, saveProductId);
 
-        Serializable save3 = session.save(user);
+        Serializable saveUserId = session.save(user);
         session.evict(user);
-        User user1 = session.find(User.class, save3);
+        User userFind = session.find(User.class, saveUserId);
 
-        review.setProduct(product1);
-        review.setUser(user1);
+        review.setProduct(productFind);
+        review.setUser(userFind);
 
-        Serializable saveId = session.save(review);
+        Serializable saveReviewId = session.save(review);
         session.evict(review);
-        Review review1 = session.find(Review.class, saveId);
+        Review reviewFind = session.find(Review.class, saveReviewId);
 
-        assertNotNull(review1);
+        assertNotNull(reviewFind);
         session.getTransaction().commit();
     }
 
@@ -149,19 +152,20 @@ public class ModelTest {
                 .password("TEST")
                 .build();
         Sale sale = new Coupon(null, LocalDate.now(), LocalDate.now(), TypeSale.COUPON, SaleStatus.ACTIVE, "", 100);
+
         @Cleanup Session session = FACTORY.openSession();
         session.beginTransaction();
 
-        Serializable save = session.save(user);
+        Serializable saveUserId = session.save(user);
         session.evict(user);
-        User userFind = session.find(User.class, save);
+        User userFind = session.find(User.class, saveUserId);
+
         sale.setUser(userFind);
-
-        Serializable save1 = session.save(sale);
+        Serializable saveSaleId = session.save(sale);
         session.evict(sale);
-        Sale sale1 = session.find(Sale.class, save1);
+        Sale saleFind = session.find(Sale.class, saveSaleId);
 
-        assertNotNull(sale1);
+        assertNotNull(saleFind);
         session.getTransaction().commit();
     }
 
@@ -175,19 +179,20 @@ public class ModelTest {
                 .password("TEST")
                 .build();
         Sale sale = new Discount(null, LocalDate.now(), LocalDate.now(), TypeSale.DISCOUNT, SaleStatus.ACTIVE, "", 100);
+
         @Cleanup Session session = FACTORY.openSession();
         session.beginTransaction();
 
-        Serializable save = session.save(user);
+        Serializable saveUserId = session.save(user);
         session.evict(user);
-        User userFind = session.find(User.class, save);
+        User userFind = session.find(User.class, saveUserId);
+
         sale.setUser(userFind);
-
-        Serializable save1 = session.save(sale);
+        Serializable saveSaleId = session.save(sale);
         session.evict(sale);
-        Sale sale1 = session.find(Sale.class, save1);
+        Sale saleFind = session.find(Sale.class, saveSaleId);
 
-        assertNotNull(sale1);
+        assertNotNull(saleFind);
         session.getTransaction().commit();
     }
 
@@ -207,23 +212,23 @@ public class ModelTest {
         @Cleanup Session session = FACTORY.openSession();
         session.beginTransaction();
 
-        Serializable save = session.save(category);
+        Serializable saveCategoryId = session.save(category);
         session.evict(category);
-        Category category1 = session.find(Category.class, save);
+        Category categoryFind = session.find(Category.class, saveCategoryId);
 
-        product.setCategory(category1);
-        Serializable save1 = session.save(product);
+        product.setCategory(categoryFind);
+        Serializable saveProductId = session.save(product);
         session.evict(product);
-        Product product1 = session.find(Product.class, save1);
+        Product productFind = session.find(Product.class, saveProductId);
 
-        storage.setProduct(product1);
-        storage.setId(product1.getId());
+        storage.setProduct(productFind);
+        storage.setId(productFind.getId());
 
-        Serializable save2 = session.save(storage);
+        Serializable saveStorageId = session.save(storage);
         session.evict(storage);
-        Storage storage1 = session.find(Storage.class, save2);
+        Storage storageFind = session.find(Storage.class, saveStorageId);
 
-        assertNotNull(storage1);
+        assertNotNull(storageFind);
         session.getTransaction().commit();
     }
 
@@ -236,19 +241,19 @@ public class ModelTest {
         Category category = Category.builder()
                 .name("TEST")
                 .build();
+
         @Cleanup Session session = FACTORY.openSession();
         session.beginTransaction();
 
-        Serializable saveID = session.save(category);
+        Serializable saveCategoryId = session.save(category);
         session.evict(category);
-        Category categoryFind = session.find(Category.class, saveID);
+        Category categoryFind = session.find(Category.class, saveCategoryId);
 
         product.setCategory(categoryFind);
-        Serializable serializable = session.save(product);
-
+        Serializable saveProductId = session.save(product);
         session.evict(product);
+        Product productFind = session.find(Product.class, saveProductId);
 
-        Product productFind = session.find(Product.class, serializable);
         assertNotNull(productFind);
         session.getTransaction().commit();
     }
@@ -266,19 +271,19 @@ public class ModelTest {
                 .status(OrderStatus.PROCESSED)
                 .date(LocalDate.now())
                 .build();
+
         @Cleanup Session session = FACTORY.openSession();
         session.beginTransaction();
 
-        Serializable serializable = session.save(user);
+        Serializable saveUserId = session.save(user);
         session.evict(user);
-        User userFind = session.find(User.class, serializable);
+        User userFind = session.find(User.class, saveUserId);
 
         order.setUser(userFind);
-        Serializable serializable1 = session.save(order);
-
+        Serializable saveOrderId = session.save(order);
         session.evict(order);
+        Order orderFind = session.find(Order.class, saveOrderId);
 
-        Order orderFind = session.find(Order.class, serializable1);
         assertNotNull(orderFind);
         session.getTransaction().commit();
     }
@@ -292,15 +297,15 @@ public class ModelTest {
                 .email("TEST3@TEST.TEST")
                 .password("TEST")
                 .build();
+
         @Cleanup Session session = FACTORY.openSession();
         session.beginTransaction();
-        Serializable serializable = session.save(user);
 
+        Serializable saveUserId = session.save(user);
         session.evict(user);
+        User userFind = session.find(User.class, saveUserId);
 
-        User userFind = session.find(User.class, serializable);
         assertNotNull(userFind);
         session.getTransaction().commit();
     }
-
 }

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,6 +25,7 @@ import java.util.Set;
 
 @Builder
 @Data
+@ToString(exclude = {"reviews", "orders", "products", "sales"})
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @AllArgsConstructor(staticName = "of")

@@ -7,7 +7,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -25,7 +24,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Builder
-@ToString(exclude = {"category", "storage"})
+@ToString(exclude = {"category", "storage", "reviews", "lineItems", "users"})
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")

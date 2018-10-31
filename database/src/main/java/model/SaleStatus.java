@@ -7,5 +7,5 @@ import lombok.ToString;
 @Getter
 public enum SaleStatus {
 
-    ACTIVE, COMPLITED, LOST;
+    ACTIVE, COMPLITED, LOST
 }

@@ -15,20 +15,12 @@ public class UserDao {
 
     private static final UserDao INSTANCE = new UserDao();
 
-//    public void save(User user) {
-//        @Cleanup SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-//        @Cleanup Session session = sessionFactory.openSession();
-//        session.beginTransaction();
-//        session.save(user);
-//        session.getTransaction().commit();
-//    }
-
     public Optional<User> getById(Long id) {
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-        Session session = sessionFactory.openSession();
+        @Cleanup SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        @Cleanup Session session = sessionFactory.openSession();
         session.beginTransaction();
+
         User user = session.get(User.class, id);
-        System.out.println("dao - " + user);
         session.getTransaction().commit();
 
         return Optional.ofNullable(user);

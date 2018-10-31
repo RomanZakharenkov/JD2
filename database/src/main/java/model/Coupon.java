@@ -3,7 +3,6 @@ package model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
@@ -15,7 +14,6 @@ import java.time.LocalDate;
 @Builder
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
 @AllArgsConstructor(staticName = "of")
 @Entity
 @Table(name = "Coupon", schema = "shop")

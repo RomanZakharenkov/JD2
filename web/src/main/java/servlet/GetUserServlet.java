@@ -1,6 +1,5 @@
 package servlet;
 
-import model.Role;
 import model.User;
 import service.UserService;
 
@@ -20,7 +19,6 @@ public class GetUserServlet extends HttpServlet {
         Long id = Long.parseLong(req.getParameter("id"));
         User user = UserService.getInstance().getUser(id);
         req.setAttribute("user", user);
-        System.out.println(user);
 
         getServletContext()
                 .getRequestDispatcher("/WEB-INF/jsp/getUser.jsp")
