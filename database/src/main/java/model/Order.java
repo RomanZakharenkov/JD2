@@ -26,7 +26,7 @@ import java.util.Set;
 @EqualsAndHashCode(of = "id")
 @AllArgsConstructor(staticName = "of")
 @Entity
-@Table(name = "order", schema = "shop")
+@Table(name = "user_order", schema = "shop")
 public class Order implements BaseEntity<Long> {
 
     @Id

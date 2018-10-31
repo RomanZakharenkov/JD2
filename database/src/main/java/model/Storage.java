@@ -33,7 +33,7 @@ import java.security.PrivateKey;
 public class Storage implements BaseEntity<Long> {
 
     @Id
-    @Column(name = "product_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "count")
