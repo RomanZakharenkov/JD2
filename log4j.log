@@ -1,11 +1,11 @@
-2018-10-31 22:33:16,288 INFO  - HHH000412: Hibernate Core {5.2.16.Final}
-2018-10-31 22:33:16,304 INFO  - HHH000206: hibernate.properties not found
-2018-10-31 22:33:16,892 INFO  - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
-2018-10-31 22:33:17,174 WARN  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
-2018-10-31 22:33:17,189 INFO  - HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/online_shop]
-2018-10-31 22:33:17,189 INFO  - HHH10001001: Connection properties: {user=postgres, password=****}
-2018-10-31 22:33:17,189 INFO  - HHH10001003: Autocommit mode: false
-2018-10-31 22:33:17,205 INFO  - HHH000115: Hibernate connection pool size: 20 (min=1)
-2018-10-31 22:33:17,804 INFO  - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
-2018-10-31 22:33:18,657 INFO  - HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
-2018-10-31 22:33:18,672 INFO  - HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@683a3e
+2018-11-02 14:11:35,428 INFO  - HHH000412: Hibernate Core {5.2.16.Final}
+2018-11-02 14:11:35,434 INFO  - HHH000206: hibernate.properties not found
+2018-11-02 14:11:36,395 INFO  - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-02 14:11:36,881 WARN  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-11-02 14:11:36,896 INFO  - HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/online_shop]
+2018-11-02 14:11:36,896 INFO  - HHH10001001: Connection properties: {user=postgres, password=****}
+2018-11-02 14:11:36,897 INFO  - HHH10001003: Autocommit mode: false
+2018-11-02 14:11:36,910 INFO  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2018-11-02 14:11:37,346 INFO  - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2018-11-02 14:11:38,101 INFO  - HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+2018-11-02 14:11:38,110 INFO  - HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@1276732
