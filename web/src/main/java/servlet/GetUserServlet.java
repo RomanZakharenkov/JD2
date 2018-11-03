@@ -17,11 +17,11 @@ public class GetUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Long id = Long.parseLong(req.getParameter("id"));
-        User user = UserService.getInstance().getUser(id);
-        req.setAttribute("user", user);
+//        User user = UserService.getInstance().findUserById(id);
+//        req.setAttribute("user", user);
 
         getServletContext()
-                .getRequestDispatcher("/WEB-INF/jsp/getUser.jsp")
+                .getRequestDispatcher("/WEB-INF/jsp/findUserById.jsp")
                 .forward(req, resp);
     }
 }

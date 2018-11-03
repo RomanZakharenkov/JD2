@@ -1,6 +1,6 @@
 package service;
 
-import dao.UserDao;
+import dao.UserDaoImpl;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import model.User;
@@ -10,9 +10,9 @@ public class UserService {
 
     private static final UserService INSTANCE = new UserService();
 
-    public User getUser(Long id) {
-        return UserDao.getInstance().getById(id).get();
-    }
+//    public User findUserById(Long id) {
+//        return UserDaoImpl.getInstance().findById(User.class, id).get();
+//    }
 
     public static UserService getInstance() {
         return INSTANCE;
