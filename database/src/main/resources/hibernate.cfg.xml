@@ -13,15 +13,15 @@
     <property name="format_sql">true</property>
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
-    <mapping class="model.User"/>
-    <mapping class="model.Product"/>
-    <mapping class="model.Category"/>
-    <mapping class="model.Storage"/>
-    <mapping class="model.Review"/>
-    <mapping class="model.Order"/>
-    <mapping class="model.LineItem"/>
-    <mapping class="model.Sale"/>
-    <mapping class="model.Discount"/>
-    <mapping class="model.Coupon"/>
+    <mapping class="com.zakharenkov.shop.model.User"/>
+    <mapping class="com.zakharenkov.shop.model.Product"/>
+    <mapping class="com.zakharenkov.shop.model.Category"/>
+    <mapping class="com.zakharenkov.shop.model.Storage"/>
+    <mapping class="com.zakharenkov.shop.model.Review"/>
+    <mapping class="com.zakharenkov.shop.model.Order"/>
+    <mapping class="com.zakharenkov.shop.model.LineItem"/>
+    <mapping class="com.zakharenkov.shop.model.Sale"/>
+    <mapping class="com.zakharenkov.shop.model.Discount"/>
+    <mapping class="com.zakharenkov.shop.model.Coupon"/>
   </session-factory>
 </hibernate-configuration>

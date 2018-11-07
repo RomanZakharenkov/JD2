@@ -1,11 +1,12 @@
-2018-11-04 01:00:29,277 INFO  - HHH000412: Hibernate Core {5.2.16.Final}
-2018-11-04 01:00:29,296 INFO  - HHH000206: hibernate.properties not found
-2018-11-04 01:00:30,332 INFO  - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
-2018-11-04 01:00:30,907 WARN  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
-2018-11-04 01:00:30,993 INFO  - HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/online_shop]
-2018-11-04 01:00:30,993 INFO  - HHH10001001: Connection properties: {user=postgres, password=****}
-2018-11-04 01:00:30,993 INFO  - HHH10001003: Autocommit mode: false
-2018-11-04 01:00:31,014 INFO  - HHH000115: Hibernate connection pool size: 20 (min=1)
-2018-11-04 01:00:32,233 INFO  - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
-2018-11-04 01:00:34,121 INFO  - HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
-2018-11-04 01:00:34,143 INFO  - HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@1238fc2
+2018-11-07 00:31:28,933 INFO  - HHH000412: Hibernate Core {5.2.16.Final}
+2018-11-07 00:31:28,939 INFO  - HHH000206: hibernate.properties not found
+2018-11-07 00:31:29,863 INFO  - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-07 00:31:30,346 WARN  - HHH10001002: Using Hibernate built-in com.zakharenkov.shop.connection pool (not for production use!)
+2018-11-07 00:31:30,463 INFO  - HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/online_shop]
+2018-11-07 00:31:30,464 INFO  - HHH10001001: Connection properties: {user=postgres, password=****}
+2018-11-07 00:31:30,464 INFO  - HHH10001003: Autocommit mode: false
+2018-11-07 00:31:30,474 INFO  - HHH000115: Hibernate com.zakharenkov.shop.connection pool size: 20 (min=1)
+2018-11-07 00:31:30,970 INFO  - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2018-11-07 00:31:31,795 INFO  - HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+2018-11-07 00:31:31,806 INFO  - HHH000270: Type registration [java.com.zakharenkov.shop.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@10f2471
+2018-11-07 00:31:35,950 INFO  - HHH000397: Using ASTQueryTranslatorFactory

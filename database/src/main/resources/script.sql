@@ -8,7 +8,7 @@ CREATE TABLE shop.category (
 CREATE TABLE shop.product (
   id          BIGSERIAL PRIMARY KEY,
   brand       CHARACTER VARYING(50) NOT NULL,
-  model       CHARACTER VARYING(50) NOT NULL,
+  com.zakharenkov.shop.model       CHARACTER VARYING(50) NOT NULL,
   price       INTEGER               NOT NULL,
   category_id INTEGER               NOT NULL REFERENCES shop.category (id),
   description TEXT,
