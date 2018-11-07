@@ -1,9 +1,9 @@
 package model;
 
 import lombok.Getter;
+import lombok.ToString;
 
-import java.util.Arrays;
-
+@ToString
 @Getter
 public enum Role {
 
@@ -13,19 +13,5 @@ public enum Role {
 
     Role(String name) {
         this.name = name;
-    }
-
-    public static Role getByName(String name) {
-        return Arrays.stream(values())
-                .filter(it -> it.getName().equals(name))
-                .findFirst()
-                .orElse(null);
-    }
-
-    @Override
-    public String toString() {
-        return "Role{" +
-                "name='" + name + '\'' +
-                '}';
     }
 }

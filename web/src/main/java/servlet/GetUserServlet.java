@@ -16,7 +16,7 @@ public class GetUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Integer id = Integer.parseInt(req.getParameter("id"));
+        Long id = Long.parseLong(req.getParameter("id"));
         User user = UserService.getInstance().getUser(id);
         req.setAttribute("user", user);
 
