@@ -1,6 +1,6 @@
 package com.zakharenkov.shop.model;
 
-import com.zakharenkov.shop.connection.Connection;
+import com.zakharenkov.shop.connection.ConnectionManager;
 import lombok.Cleanup;
 import org.hibernate.Session;
 import org.junit.Test;
@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 import static org.junit.Assert.assertNotNull;
 
-public class CategoryTest extends Connection {
+public class CategoryTest {
 
     @Test
     public void categoryTest() {
@@ -17,7 +17,7 @@ public class CategoryTest extends Connection {
                 .name("TEST2")
                 .build();
 
-        @Cleanup Session session = Connection.getSession();
+        @Cleanup Session session = ConnectionManager.getSession();
         session.beginTransaction();
 
         Serializable saveCategoryId = session.save(category);

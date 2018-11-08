@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Рома
-  Date: 04.11.2018
-  Time: 1:40
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -50,36 +43,17 @@
 		<tr>
 			<td>Производитель</td>
 			<td>
-				<%--TODO: переделать с запоминанием выбранного брэнда--%>
-				<select name="brand">
-					<option value="ALL" selected>Все</option>
-					<c:forEach var="curBrand" items="${sessionScope.brands}">
-						<option value=${curBrand}>
-							<c:out value="${curBrand}"/>
-						</option>
+				<select name='brand'>
+					<c:forEach items="${sessionScope.brands}" var="brand">
+						<c:if test="${brand != sessionScope.filter.brand}">
+							<option value="${brand}">${brand}</option>
+						</c:if>
+						<c:if test="${brand == sessionScope.filter.brand}">
+							<option value="${brand}" selected>${brand}</option>
+						</c:if>
 					</c:forEach>
 				</select>
 			</td>
-			<%--<td>--%>
-				<%--<select name="brand">--%>
-					<%--&lt;%&ndash;<option value="ALL" selected>Все</option>&ndash;%&gt;--%>
-					<%--<c:forEach var="curBrand" items="${sessionScope.brands}">--%>
-						<%--<c:if test="${curBrand} == ${sessionScope.filter.brand}">--%>
-							<%--<option value=${curBrand}, selected>--%>
-								<%--&lt;%&ndash;<c:out value="${curBrand}"/>&ndash;%&gt;--%>
-								<%--${curBrand}--%>
-							<%--</option>--%>
-						<%--</c:if>--%>
-						<%--<c:if test="${curBrand} != ${sessionScope.filter.brand}">--%>
-							<%--<option value=${curBrand}>--%>
-								<%--&lt;%&ndash;<c:out value="${curBrand}"/>&ndash;%&gt;--%>
-								<%--${curBrand}--%>
-							<%--</option>--%>
-						<%--</c:if>--%>
-					<%--</c:forEach>--%>
-				<%--</select>--%>
-				<%--${sessionScope.filter.brand}--%>
-			<%--</td>--%>
 		</tr>
 		<tr>
 			<td>Сортировать товары</td>
@@ -113,10 +87,10 @@
 			</td>
 			<td>Максимальная</td>
 			<td>
-				<c:if test="${sessionScope.filter.maxPrice == 2147483647}">
+				<c:if test="${sessionScope.filter.maxPrice == ''}">
 					<input type="text" name="maxPrice">
 				</c:if>
-				<c:if test="${sessionScope.filter.maxPrice != 2147483647}">
+				<c:if test="${sessionScope.filter.maxPrice != ''}">
 					<input type="text" name="maxPrice" value="${sessionScope.filter.maxPrice}">
 				</c:if>
 			</td>
@@ -124,14 +98,23 @@
 		<tr>
 			<td>Отображать на странице по</td>
 			<td>
-				<select name="pageSize">
-					<option value="5" />5
-					<option value="10", selected/>10
-					<option value="15" />15
-					<option value="20" />20
-				</select>штук
+				<select name='pageSize'>
+					<c:forEach begin="5" end="20" step="5" var="size">
+						<c:if test="${size != sessionScope.filter.pageSize}">
+							<option value="${size}">${size}</option>
+						</c:if>
+						<c:if test="${size == sessionScope.filter.pageSize}">
+							<option value="${size}" selected>${size}</option>
+						</c:if>
+					</c:forEach>
+				</select> штук
 			</td>
-			<td>all ${sessionScope.filter.count}</td>
+			<td>Выбор страницы</td>
+			<td>
+				<c:forEach var="page" begin="1" end="${requestScope.countPage}" step="1">
+					<a href="/products?page=${page}">${page}</a>
+				</c:forEach>
+			</td>
 		</tr>
 	</table>
 </form>

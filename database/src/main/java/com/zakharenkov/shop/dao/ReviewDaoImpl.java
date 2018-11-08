@@ -4,10 +4,10 @@ import com.zakharenkov.shop.model.Review;
 
 public class ReviewDaoImpl extends BaseDaoImpl<Long, Review> implements ReviewDao {
 
-    private static final ReviewDao INSTANCE = new ReviewDaoImpl(Review.class);
+    private static final ReviewDao INSTANCE = new ReviewDaoImpl();
 
-    public ReviewDaoImpl(Class<Review> clazz) {
-        super(clazz);
+    private ReviewDaoImpl() {
+        super(Review.class);
     }
 
     public static ReviewDao getInstance() {

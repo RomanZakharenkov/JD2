@@ -4,10 +4,10 @@ import com.zakharenkov.shop.model.User;
 
 public class UserDaoImpl extends BaseDaoImpl<Long, User> implements UserDao {
 
-    private static final UserDaoImpl INSTANCE = new UserDaoImpl(User.class);
+    private static final UserDaoImpl INSTANCE = new UserDaoImpl();
 
-    public UserDaoImpl(Class<User> clazz) {
-        super(clazz);
+    private UserDaoImpl() {
+        super(User.class);
     }
 
     public static UserDaoImpl getInstance() {

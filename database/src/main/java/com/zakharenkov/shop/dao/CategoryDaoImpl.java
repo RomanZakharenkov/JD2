@@ -4,10 +4,10 @@ import com.zakharenkov.shop.model.Category;
 
 public class CategoryDaoImpl extends BaseDaoImpl<Integer, Category> implements CategoryDao {
 
-    private static final CategoryDao INSTANCE = new CategoryDaoImpl(Category.class);
+    private static final CategoryDao INSTANCE = new CategoryDaoImpl();
 
-    public CategoryDaoImpl(Class<Category> clazz) {
-        super(clazz);
+    private CategoryDaoImpl() {
+        super(Category.class);
     }
 
     public static CategoryDao getInstance() {

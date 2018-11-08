@@ -24,11 +24,16 @@ import static com.zakharenkov.shop.connection.ConnectionManager.getSession;
 
 public class ProductDaoImpl extends BaseDaoImpl<Long, Product> implements ProductDao {
 
-    private static final ProductDao INSTANCE = new ProductDaoImpl(Product.class);
+    private static final ProductDao INSTANCE = new ProductDaoImpl();
+    private static final String ANY = "Любой";
+    private static final String ASC = "asc";
+
+    private ProductDaoImpl() {
+        super(Product.class);
+    }
 
     public Long getCountProduct(FilterDto filter) {
         @Cleanup Session session = getSession();
-
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<Long> criteria = cb.createQuery(Long.class);
         Root<Product> root = criteria.from(Product.class);
@@ -73,6 +78,7 @@ public class ProductDaoImpl extends BaseDaoImpl<Long, Product> implements Produc
         @Cleanup Session session = getSession();
 
         Set<String> allBrand = new HashSet<>();
+        allBrand.add("Любой");
         List<String> fetch = new JPAQuery<Product>(session)
                 .select(QProduct.product.productDetail.brand)
                 .from(QProduct.product)
@@ -83,7 +89,7 @@ public class ProductDaoImpl extends BaseDaoImpl<Long, Product> implements Produc
 
     private Order getOrderBy(FilterDto filter, CriteriaBuilder cb, Root<Product> root) {
         Order orderBy;
-        if ("asc".equals(filter.getOrderBy())) {
+        if (ASC.equals(filter.getOrderBy())) {
             orderBy = cb.asc(root.get(Product_.price));
         } else {
             orderBy = cb.desc(root.get(Product_.price));
@@ -101,7 +107,7 @@ public class ProductDaoImpl extends BaseDaoImpl<Long, Product> implements Produc
             predicates.add(cb.le(root.get(Product_.price), filter.getMaxPrice()));
         }
 
-        if (filter.getBrand() != null && !"ALL".equals(filter.getBrand())) {
+        if (filter.getBrand() != null && !ANY.equals(filter.getBrand())) {
             predicates.add(cb.equal(root.get(Product_.productDetail).get(ProductDetail_.brand), filter.getBrand()));
         }
 
@@ -119,10 +125,6 @@ public class ProductDaoImpl extends BaseDaoImpl<Long, Product> implements Produc
         }
 
         return predicates;
-    }
-
-    public ProductDaoImpl(Class<Product> clazz) {
-        super(clazz);
     }
 
     public static ProductDao getInstance() {

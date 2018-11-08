@@ -1,6 +1,6 @@
 package com.zakharenkov.shop.model;
 
-import com.zakharenkov.shop.connection.Connection;
+import com.zakharenkov.shop.connection.ConnectionManager;
 import lombok.Cleanup;
 import org.hibernate.Session;
 import org.junit.Test;
@@ -23,7 +23,7 @@ public class DiscountTest {
                 .build();
         Sale sale = new Discount(null, LocalDate.now(), LocalDate.now(), TypeSale.DISCOUNT, SaleStatus.ACTIVE, "", 100);
 
-        @Cleanup Session session = Connection.getSession();
+        @Cleanup Session session = ConnectionManager.getSession();
         session.beginTransaction();
 
         Serializable saveUserId = session.save(user);

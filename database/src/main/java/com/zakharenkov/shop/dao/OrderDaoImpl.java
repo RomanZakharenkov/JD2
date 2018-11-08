@@ -4,10 +4,10 @@ import com.zakharenkov.shop.model.Order;
 
 public class OrderDaoImpl extends BaseDaoImpl<Long, Order> implements OrderDao {
 
-    private static final OrderDao INSTANCE = new OrderDaoImpl(Order.class);
+    private static final OrderDao INSTANCE = new OrderDaoImpl();
 
-    public OrderDaoImpl(Class<Order> clazz) {
-        super(clazz);
+    private OrderDaoImpl() {
+        super(Order.class);
     }
 
     public static OrderDao getInstance() {

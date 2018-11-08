@@ -1,6 +1,6 @@
 package com.zakharenkov.shop.model;
 
-import com.zakharenkov.shop.connection.Connection;
+import com.zakharenkov.shop.connection.ConnectionManager;
 import lombok.Cleanup;
 import org.hibernate.Session;
 import org.junit.Test;
@@ -24,7 +24,7 @@ public class StorageTest {
                 .count(100)
                 .build();
 
-        @Cleanup Session session = Connection.getSession();
+        @Cleanup Session session = ConnectionManager.getSession();
         session.beginTransaction();
 
         Serializable saveCategoryId = session.save(category);
