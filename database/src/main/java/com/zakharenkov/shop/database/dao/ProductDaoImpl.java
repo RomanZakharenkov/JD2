@@ -97,7 +97,6 @@ public class ProductDaoImpl extends BaseDaoImpl<Long, Product> implements Produc
             predicates.add(cb.le(root.get(Product_.price), filter.getMaxPrice()));
         }
 
-        System.out.println(filter.getBrand() + "+++++++++++++++++++++");
         if (filter.getBrand() != null && !ANY.equals(filter.getBrand())) {
             predicates.add(cb.equal(root.get(Product_.productDetail).get(ProductDetail_.brand), filter.getBrand()));
         }

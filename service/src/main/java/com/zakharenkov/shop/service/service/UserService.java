@@ -1,20 +1,22 @@
 package com.zakharenkov.shop.service.service;
 
 import com.zakharenkov.shop.database.dao.UserDaoImpl;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import com.zakharenkov.shop.database.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+import java.util.Optional;
+
+@Service
+@Transactional
 public class UserService {
 
-    private static final UserService INSTANCE = new UserService();
+    @Autowired
+    private UserDaoImpl userDao;
 
-//    public User findUserById(Long id) {
-//        return UserDaoImpl.getInstance().findById(id);
-//    }
-
-    public static UserService getInstance() {
-        return INSTANCE;
+    public User findUserById(Long id) {
+        Optional<User> userOptional = userDao.findById(id);
+        return userOptional.isPresent() ? userOptional.get() : null;
     }
 }
