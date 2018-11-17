@@ -34,7 +34,7 @@ public class GetAllProductServlet extends HttpServlet {
         FilterDto filter = (FilterDto) req.getSession().getAttribute("filter");
         if (filter == null) {
             filter = FilterDto.builder()
-                    .brand("Любой")
+                    .brand(ProductDaoImpl.ANY)
                     .orderBy("desc")
                     .pageSize(10)
                     .page(1)

@@ -22,7 +22,7 @@ import java.util.Set;
 @Repository
 public class ProductDaoImpl extends BaseDaoImpl<Long, Product> implements ProductDao {
 
-    private static final String ANY = "Любой";
+    public static final String ANY = "-";
     private static final String ASC = "asc";
 
     public Long getCountProduct(FilterDto filter) {
@@ -66,7 +66,7 @@ public class ProductDaoImpl extends BaseDaoImpl<Long, Product> implements Produc
     @Override
     public Set<String> getAllBrand() {
         Set<String> allBrand = new HashSet<>();
-        allBrand.add("Любой");
+        allBrand.add(ANY);
 
         List<String> fetch = new JPAQuery<Product>(getSessionFactory().getCurrentSession())
                 .select(QProduct.product.productDetail.brand)
@@ -97,6 +97,7 @@ public class ProductDaoImpl extends BaseDaoImpl<Long, Product> implements Produc
             predicates.add(cb.le(root.get(Product_.price), filter.getMaxPrice()));
         }
 
+        System.out.println(filter.getBrand() + "+++++++++++++++++++++");
         if (filter.getBrand() != null && !ANY.equals(filter.getBrand())) {
             predicates.add(cb.equal(root.get(Product_.productDetail).get(ProductDetail_.brand), filter.getBrand()));
         }
