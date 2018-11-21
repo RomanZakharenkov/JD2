@@ -15,8 +15,8 @@ public class UserService {
     @Autowired
     private UserDaoImpl userDao;
 
-    public User findUserById(Long id) {
-        Optional<User> userOptional = userDao.findById(id);
-        return userOptional.isPresent() ? userOptional.get() : null;
+    public Optional<User> findUserById(Long id) {
+        Optional<User> user = userDao.findById(id);
+        return user;
     }
 }

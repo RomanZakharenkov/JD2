@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 import static org.junit.Assert.assertNotNull;
 
-public class DiscountTest extends BaseEntityTest{
+public class DiscountTest extends BaseEntityTest {
 
     @Test
     public void discountTest() {

@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 import static org.junit.Assert.assertNotNull;
 
-public class UserTest extends BaseEntityTest{
+public class UserTest extends BaseEntityTest {
 
     @Test
     public void userTest() {

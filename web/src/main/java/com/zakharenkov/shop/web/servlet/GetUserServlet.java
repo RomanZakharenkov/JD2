@@ -22,7 +22,7 @@ public class GetUserServlet extends HttpServlet {
 
         Long id = Long.parseLong(req.getParameter("id"));
 
-        User user = userService.findUserById(id);
+        User user = userService.findUserById(id).get();
         req.setAttribute("user", user);
 
         getServletContext()

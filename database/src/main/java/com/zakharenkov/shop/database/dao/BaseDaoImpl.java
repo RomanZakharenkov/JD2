@@ -22,7 +22,7 @@ public abstract class BaseDaoImpl<P extends Serializable, E extends BaseEntity<P
 
     @SuppressWarnings("unchecked")
     public BaseDaoImpl() {
-        this.clazz = (Class<E>) GenericTypeResolver.resolveTypeArguments(getClass(), BaseDaoImpl.class)[1];;
+        this.clazz = (Class<E>) GenericTypeResolver.resolveTypeArguments(getClass(), BaseDaoImpl.class)[1];
     }
 
     @Override
