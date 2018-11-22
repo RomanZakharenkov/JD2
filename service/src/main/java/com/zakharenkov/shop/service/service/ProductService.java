@@ -14,19 +14,16 @@ import java.util.Set;
 @Transactional
 public class ProductService {
 
-    @Autowired
-    private ProductDaoImpl productDao;
-
-    public Long getCountProduct(FilterDto filter) {
-        return productDao.getCountProduct(filter);
-    }
-
-    public List<Product> findByFilter(FilterDto filter) {
-        return productDao.findByFilter(filter);
-    }
-
-    public Set<String> getAllBrand() {
-        return productDao.getAllBrand();
-    }
+//    public Long getCountProduct(FilterDto filter) {
+//        return productDao.getCountProduct(filter);
+//    }
+//
+//    public List<Product> findByFilter(FilterDto filter) {
+//        return productDao.findByFilter(filter);
+//    }
+//
+//    public Set<String> getAllBrand() {
+//        return productDao.getAllBrand();
+//    }
 
 }
