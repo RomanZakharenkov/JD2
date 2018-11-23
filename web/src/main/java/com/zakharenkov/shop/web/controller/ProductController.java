@@ -41,8 +41,12 @@ public class ProductController {
         }
 
         String page = servletRequest.getParameter("page");
+        String pageSize = servletRequest.getParameter("pageSize");
         if (page != null) {
             filter.setPage(Integer.parseInt(page));
+        }
+        if (pageSize != null) {
+            filter.setPageSize(Integer.parseInt(pageSize));
         }
 
         List<Product> products = productService.findByFilter(filter);

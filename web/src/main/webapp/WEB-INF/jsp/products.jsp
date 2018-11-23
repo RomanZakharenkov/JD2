@@ -112,7 +112,7 @@
 			<td>Выбор страницы</td>
 			<td>
 				<c:forEach var="page" begin="1" end="${requestScope.countPage}" step="1">
-					<a href="/products?page=${page}">${page}</a>
+					<a href="/products?page=${page}&sizePage=${sessionScope.filter.pageSize}">${page}</a>
 				</c:forEach>
 			</td>
 		</tr>

@@ -60,7 +60,7 @@ public class CustomProductRepositoryImpl implements CustomProductRepository {
 
         return entityManager.createQuery(criteria)
                 .setFirstResult(filter.getPageSize() * (filter.getPage() - 1))
-                .setMaxResults(filter.getPageSize() * filter.getPage())
+                .setMaxResults(filter.getPageSize())
                 .getResultList();
     }
 
