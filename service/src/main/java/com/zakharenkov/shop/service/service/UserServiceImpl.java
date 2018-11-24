@@ -15,7 +15,7 @@ import java.util.Optional;
 @Service
 @Transactional
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserDetailsConverter userDetailsConverter;

@@ -19,7 +19,6 @@ import java.util.List;
 public class CustomProductRepositoryImpl implements CustomProductRepository {
 
     public static final String ANY = "-";
-    private static final String ASC = "asc";
 
     @Autowired
     private EntityManager entityManager;

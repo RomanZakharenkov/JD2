@@ -24,7 +24,7 @@
 //public class BaseEntityTest {
 //
 //    @Autowired
-//    private SessionFactory sessionFactory;
+//    public SessionFactory sessionFactory;
 //
 //    @Test
 //    public void check() {
@@ -33,6 +33,7 @@
 //                .build();
 //
 //        Session session = sessionFactory.getCurrentSession();
+//
 //        Serializable saveCategoryId = session.save(category);
 //        session.evict(category);
 //        Category categoryFind = session.find(Category.class, saveCategoryId);

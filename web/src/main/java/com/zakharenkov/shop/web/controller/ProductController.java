@@ -4,15 +4,12 @@ import com.zakharenkov.shop.database.dto.FilterDto;
 import com.zakharenkov.shop.database.model.Product;
 import com.zakharenkov.shop.database.repository.CustomProductRepositoryImpl;
 import com.zakharenkov.shop.service.service.ProductService;
-import com.zakharenkov.shop.web.util.ContextRun;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;

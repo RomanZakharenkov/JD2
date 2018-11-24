@@ -19,5 +19,4 @@ public class FilterDto {
     private boolean orderByDesc;
     private Integer pageSize;
     private Integer page;
-
 }

@@ -26,10 +26,4 @@ public class UserController {
         user.ifPresent(user1 -> model.addAttribute("user", user1));
         return "user";
     }
-
-    @GetMapping("/test")
-    public String test() {
-
-        return "user";
-    }
 }
