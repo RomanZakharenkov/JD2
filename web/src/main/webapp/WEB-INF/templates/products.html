@@ -48,7 +48,6 @@
                 </select>
             </td>
         </tr>
-
         <tr>
             <td align="left">Сортировать товары</td>
             <td align="left">
@@ -88,50 +87,50 @@
                 </select>
                 <span> штук</span>
             </td>
-            <!--<td>Выбор страницы</td>-->
-            <!--<td>-->
-                <!--<span th:each="page : *{page}" th:step="1" th:field="*{page}">-->
-                    <!--<a href="/products?page=${page}&sizePage=${pageSize}" >${page}</a>-->
-                <!--</span>-->
-
-                <!--&lt;!&ndash;<th:forEach var="page" begin="1" end="${requestScope.countPage}" step="1">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<a href="/products?page=${page}&sizePage=${sessionScope.filter.pageSize}">${page}</a>&ndash;&gt;-->
-                <!--&lt;!&ndash;</th:forEach>&ndash;&gt;-->
-            <!--</td>-->
+            <td>Выбор страницы</td>
+            <td>
+                <span th:each="page : ${countPage}" th:field="*{page}">
+                    <a th:href="@{/products(page=${page}, sizePage=*{pageSize})}"
+                       th:text="${page}"></a>
+                </span>
+            </td>
         </tr>
     </table>
 </form>
-<th:forEach var="product" items="${requestScope.products}">
-    <form action="${pageContext.request.contextPath}/products" method="post">
-        <table style="border-radius: 15px; background-color: white">
-            <tr>
-                <td style="width: 40%" align="center">
-                    <input type="image" src="${product.productDetail.image}" width="70%">
-                </td>
-                <td style="width: 40%; font-size: 18px">
-                    <a href="${pageContext.request.contextPath}/productInfo?id=${product.id}"
-                       style="font-size: 32px">${product.productDetail.brand} ${product.productDetail.model}</a><br>
-                    <p>Описание</p>
-                    <p>${product.productDetail.description}</p>
-                </td>
-                <td style="width: 20%; font-size: 32px" align="center">
-                    <p>Цена</p>
-                    <p>
-                        ${product.price} бел. руб.
-                    </p>
-                    <p>
-                        <th:if test="${sessionScope.currentUser != null}">
-                            <input type="hidden" name="productId" value="${product.id}"/>
-                            <input type="hidden" name="form" value="basket"/>
-                            <input type="submit"
-                                   style="background-color: #aa0005; font-size: 30px; border-bottom-color: #aa0005; color: white; border-radius: 15px"
-                                   value="В корзину">
-                        </th:if>
-                    </p>
-                </td>
-            </tr>
-        </table>
-    </form>
-</th:forEach>
+<br>
+<form th:action="@{/products}"
+      th:method="post"
+      th:each="product : ${products}"
+      th:object="${product}">
+    <table style="border-radius: 15px; background-color: white">
+        <tr>
+            <td style="width: 40%" align="center">
+                <input type="image" th:src="*{productDetail.image}" width="70%">
+            </td>
+            <td style="width: 40%; font-size: 18px">
+                <a th:href="@{/productInfo(id=*{id})}"
+                   style="font-size: 32px">
+                    <span th:text="*{productDetail.brand}"></span>
+                    <span th:text="*{productDetail.model}"></span>
+                </a><br>
+                <p>Описание</p>
+                <span th:text="*{productDetail.description}"></span>
+            </td>
+            <td style="width: 20%; font-size: 32px" align="center">
+                <p>Цена</p>
+                <span th:text="*{price}">
+                </span>
+                <span th:if="${currentUser} != null">
+                        <input type="hidden" name="productId" value="${product.id}"/>
+                        <input type="hidden" name="form" value="basket"/>
+                        <input type="submit"
+                               style="background-color: #aa0005; font-size: 30px; border-bottom-color: #aa0005; color: white; border-radius: 15px"
+                               value="В корзину">
+                </span>
+            </td>
+        </tr>
+    </table>
+    <br>
+</form>
 </body>
 </html>

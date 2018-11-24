@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -35,8 +36,6 @@ public class ProductController {
         if (filter == null) {
             filter = FilterDto.builder()
                     .brand(CustomProductRepositoryImpl.ANY)
-                    .audio(2)
-                    .minPrice(111)
                     .orderByDesc(true)
                     .pageSize(10)
                     .page(1)
@@ -64,32 +63,39 @@ public class ProductController {
         model.addAttribute("countPage", getCountPage(filter, countProduct));
         model.addAttribute("pageSizeList", pageSizeList);
 
-        allBrand.forEach(System.out::println);
         return "products";
     }
 
-    private Long getCountPage(FilterDto filter, Long count) {
+    private List<Integer> getCountPage(FilterDto filter, Long count) {
         Long countPage;
         if (count % filter.getPageSize() == 0) {
             countPage = count / filter.getPageSize();
         } else {
             countPage = count / filter.getPageSize() + 1;
         }
-        return countPage;
+        List<Integer> countPageList = new ArrayList<>();
+        for (int i = 0; i < countPage; i++) {
+            countPageList.add(i + 1);
+        }
+        return countPageList;
     }
 
     @PostMapping("/products")
     public String getForm(Model model, HttpServletRequest servletRequest) {
         FilterDto filter = getFilter(servletRequest);
+
         List<Product> products = productService.findByFilter(filter);
         Long countProduct = productService.getCountProduct(filter);
         Set<String> allBrand = productService.getAllBrand();
+        List<Integer> pageSizeList = Arrays.asList(5, 10, 15, 20);
 
         model.addAttribute("products", products);
         model.addAttribute("count", countProduct);
         model.addAttribute("filter", filter);
         model.addAttribute("brands", allBrand);
         model.addAttribute("countPage", getCountPage(filter, countProduct));
+        model.addAttribute("pageSizeList", pageSizeList);
+
         return "products";
     }
 
@@ -102,8 +108,6 @@ public class ProductController {
 
         FilterDto filter = FilterDto.builder()
                 .brand(req.getParameter("brand"))
-                .orderByDesc(true)
-                //TODO: edit
                 .pageSize(Integer.parseInt(pageSize))
                 .page(1)
                 .build();
