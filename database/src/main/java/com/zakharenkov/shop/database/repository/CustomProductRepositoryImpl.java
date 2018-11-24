@@ -96,10 +96,10 @@ public class CustomProductRepositoryImpl implements CustomProductRepository {
 
     private Order getOrderBy(FilterDto filter, CriteriaBuilder cb, Root<Product> root) {
         Order orderBy;
-        if (ASC.equals(filter.getOrderBy())) {
-            orderBy = cb.asc(root.get(Product_.price));
-        } else {
+        if (filter.isOrderByDesc()) {
             orderBy = cb.desc(root.get(Product_.price));
+        } else {
+            orderBy = cb.asc(root.get(Product_.price));
         }
         return orderBy;
     }

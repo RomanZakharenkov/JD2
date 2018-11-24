@@ -16,7 +16,7 @@ public class FilterDto {
     private Integer minPrice;
     private Integer maxPrice;
     private String brand;
-    private String orderBy;
+    private boolean orderByDesc;
     private Integer pageSize;
     private Integer page;
 

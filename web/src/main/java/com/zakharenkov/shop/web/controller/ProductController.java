@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -34,7 +35,9 @@ public class ProductController {
         if (filter == null) {
             filter = FilterDto.builder()
                     .brand(CustomProductRepositoryImpl.ANY)
-                    .orderBy("desc")
+                    .audio(2)
+                    .minPrice(111)
+                    .orderByDesc(true)
                     .pageSize(10)
                     .page(1)
                     .build();
@@ -52,12 +55,14 @@ public class ProductController {
         List<Product> products = productService.findByFilter(filter);
         Long countProduct = productService.getCountProduct(filter);
         Set<String> allBrand = productService.getAllBrand();
+        List<Integer> pageSizeList = Arrays.asList(5, 10, 15, 20);
 
         model.addAttribute("products", products);
         model.addAttribute("count", countProduct);
         model.addAttribute("filter", filter);
         model.addAttribute("brands", allBrand);
         model.addAttribute("countPage", getCountPage(filter, countProduct));
+        model.addAttribute("pageSizeList", pageSizeList);
 
         allBrand.forEach(System.out::println);
         return "products";
@@ -97,7 +102,8 @@ public class ProductController {
 
         FilterDto filter = FilterDto.builder()
                 .brand(req.getParameter("brand"))
-                .orderBy(req.getParameter("rad"))
+                .orderByDesc(true)
+                //TODO: edit
                 .pageSize(Integer.parseInt(pageSize))
                 .page(1)
                 .build();
