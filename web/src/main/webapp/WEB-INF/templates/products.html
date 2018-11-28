@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>#{products.allProducts}</title>
+</head>
+<body style="background-color: #cccccc">
+<form th:action="@{/products}" th:method="post" th:object="${filter}">
+    <table style="background-color: white; border-radius: 15px; width: 100%">
+        <tr>
+            <td>Фильтр</td>
+            <td>
+                <input type="hidden" name="form" value="filterForm">
+                <input type="submit"
+                       style="background-color: #aa0005; font-size: 15px; border-bottom-color: #aa0005; color: white; border-radius: 15px"
+                       name="form"
+                       value="Применить">
+            </td>
+            <!--TODO: добавить сброс фильтра-->
+            <!--<td>-->
+            <!--<a href="${pageContext.request.contextPath}/clearfilter" style="color: black">Сбросить фильтр</a>-->
+            <!--</td>-->
+        </tr>
+        <tr>
+            <td align="left">Категория</td>
+            <td align="left">
+                <input type="checkbox"
+                       th:value="1"
+                       th:field="*{tv}"
+                       th:text="Телевизоры">
+            </td>
+            <td align="left">
+                <input type="checkbox"
+                       th:value="2"
+                       th:field="*{audio}"
+                       th:text="Акустика">
+            </td>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td align="left">Производитель</td>
+            <td align="left">
+                <select name="brand" id="brand" th:field="*{brand}">
+                    <option th:each="brand : ${brands}"
+                            th:value="${brand}"
+                            th:text="${brand}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td align="left">Сортировать товары</td>
+            <td align="left">
+                <input type="radio"
+                       name="orderBy"
+                       th:value="true"
+                       th:field="*{orderByDesc}">
+                <span>По убыванию цены</span>
+            </td>
+            <td align="left">
+                <input type="radio"
+                       name="orderBy"
+                       th:value="false"
+                       th:field="*{orderByDesc}">
+                <span>По возрастанию цены</span>
+            </td>
+        </tr>
+        <tr>
+            <td>Цена</td>
+            <td>Минимальная</td>
+            <td>
+                <input type="text" th:value="*{minPrice}" th:field="*{minPrice}">
+            </td>
+            <td>Максимальная</td>
+            <td>
+                <input type="text" th:value="*{maxPrice}" th:field="*{maxPrice}">
+            </td>
+        </tr>
+        <tr>
+            <td>Отображать на странице по</td>
+            <td>
+                <select name="pageSize" id="pageSize" th:field="*{pageSize}">
+                    <option th:each="size : ${pageSizeList}"
+                            th:value="${size}"
+                            th:text="${size}">
+                    </option>
+                </select>
+                <span> штук</span>
+            </td>
+            <td>Выбор страницы</td>
+            <td>
+                <span th:each="page : ${countPage}" th:field="*{page}">
+                    <a th:href="@{/products(page=${page}, sizePage=*{pageSize})}"
+                       th:text="${page}"></a>
+                </span>
+            </td>
+        </tr>
+    </table>
+</form>
+<br>
+<form th:action="@{/products}"
+      th:method="post"
+      th:each="product : ${products}"
+      th:object="${product}">
+    <table style="border-radius: 15px; background-color: white">
+        <tr>
+            <td style="width: 40%" align="center">
+                <input type="image" th:src="*{productDetail.image}" width="70%">
+            </td>
+            <td style="width: 40%; font-size: 18px">
+                <a th:href="@{/productInfo(id=*{id})}"
+                   style="font-size: 32px">
+                    <span th:text="*{productDetail.brand}"></span>
+                    <span th:text="*{productDetail.model}"></span>
+                </a><br>
+                <p>Описание</p>
+                <span th:text="*{productDetail.description}"></span>
+            </td>
+            <td style="width: 20%; font-size: 32px" align="center">
+                <p>Цена</p>
+                <span th:text="*{price}">
+                </span>
+                <span th:if="${currentUser} != null">
+                        <input type="hidden" name="productId" value="${product.id}"/>
+                        <input type="hidden" name="form" value="basket"/>
+                        <input type="submit"
+                               style="background-color: #aa0005; font-size: 30px; border-bottom-color: #aa0005; color: white; border-radius: 15px"
+                               value="В корзину">
+                </span>
+            </td>
+        </tr>
+    </table>
+    <br>
+</form>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<form th:action="@{/user}" th:method="get" th:object="${user}">
+    <span th:text="*{id}">id</span><br>
+    <span th:text="*{role.name}">role</span><br>
+    <span th:text="*{firstName}">firstName</span><br>
+    <span th:text="*{lastName}">lastName</span><br>
+    <span th:text="*{email}">email</span><br>
+    <span th:text="*{number}">number</span><br>
+</form>
+</body>
+</html>
