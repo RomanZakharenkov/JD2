@@ -5,11 +5,14 @@ import com.zakharenkov.shop.database.model.Product;
 import com.zakharenkov.shop.database.repository.CustomProductRepositoryImpl;
 import com.zakharenkov.shop.service.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -78,13 +81,19 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    public String getForm(Model model, HttpServletRequest servletRequest) {
+    public String getForm(Model model,
+                          @SessionAttribute("filter") FilterDto filter2,
+                          HttpServletRequest servletRequest) {
+        System.out.println(filter2 + "*********************");
+
         FilterDto filter = getFilter(servletRequest);
 
         List<Product> products = productService.findByFilter(filter);
         Long countProduct = productService.getCountProduct(filter);
         Set<String> allBrand = productService.getAllBrand();
         List<Integer> pageSizeList = Arrays.asList(5, 10, 15, 20);
+
+
 
         model.addAttribute("products", products);
         model.addAttribute("count", countProduct);
@@ -103,10 +112,12 @@ public class ProductController {
         String maxPrice = req.getParameter("maxPrice");
         String pageSize = req.getParameter("pageSize");
 
+        System.out.println(req.getParameter("orderBy") + "+++++++++++++++++");
         FilterDto filter = FilterDto.builder()
                 .brand(req.getParameter("brand"))
                 .pageSize(Integer.parseInt(pageSize))
                 .page(1)
+                .orderByDesc(Boolean.parseBoolean(req.getParameter("orderBy")))
                 .build();
 
         if (StringUtils.isEmpty(tv)) {
