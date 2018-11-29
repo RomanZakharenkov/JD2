@@ -112,7 +112,7 @@ public class ProductController {
         String maxPrice = req.getParameter("maxPrice");
         String pageSize = req.getParameter("pageSize");
 
-        System.out.println(req.getParameter("orderBy") + "+++++++++++++++++");
+        System.out.println(req.getParameter("orderByDesc") + "+++++++++++++++++");
         FilterDto filter = FilterDto.builder()
                 .brand(req.getParameter("brand"))
                 .pageSize(Integer.parseInt(pageSize))

@@ -51,17 +51,11 @@
         <tr>
             <td align="left">Сортировать товары</td>
             <td align="left">
-                <input type="radio"
-                       name="orderBy"
-                       th:value="true"
-                       th:field="*{orderByDesc}">
+                <input type="radio" name="orderByDesc" th:value="true" th:field="*{orderByDesc}">
                 <span>По убыванию цены</span>
             </td>
             <td align="left">
-                <input type="radio"
-                       name="orderBy"
-                       th:value="false"
-                       th:field="*{orderByDesc}">
+                <input type="radio" name="orderByDesc" th:value="false" th:field="*{orderByDesc}">
                 <span>По возрастанию цены</span>
             </td>
         </tr>
