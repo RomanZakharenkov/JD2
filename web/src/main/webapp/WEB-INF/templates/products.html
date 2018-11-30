@@ -10,16 +10,15 @@
         <tr>
             <td>Фильтр</td>
             <td>
-                <input type="hidden" name="form" value="filterForm">
                 <input type="submit"
                        style="background-color: #aa0005; font-size: 15px; border-bottom-color: #aa0005; color: white; border-radius: 15px"
                        name="form"
                        value="Применить">
             </td>
             <!--TODO: добавить сброс фильтра-->
-            <!--<td>-->
-            <!--<a href="${pageContext.request.contextPath}/clearfilter" style="color: black">Сбросить фильтр</a>-->
-            <!--</td>-->
+            <td>
+                <a th:href="@{/clear-filter}" style="color: black">Сбросить фильтр</a>
+            </td>
         </tr>
         <tr>
             <td align="left">Категория</td>
@@ -84,8 +83,7 @@
             <td>Выбор страницы</td>
             <td>
                 <span th:each="page : ${countPage}" th:field="*{page}">
-                    <a th:href="@{/products(page=${page}, sizePage=*{pageSize})}"
-                       th:text="${page}"></a>
+                <a th:href="@{/products/{page}(page=${page})}" th:text="${page}"></a>
                 </span>
             </td>
         </tr>
