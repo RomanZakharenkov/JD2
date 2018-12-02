@@ -2,31 +2,25 @@ package com.zakharenkov.shop.web.controller;
 
 import com.zakharenkov.shop.database.dto.FilterDto;
 import com.zakharenkov.shop.database.model.Product;
+import com.zakharenkov.shop.database.model.User;
 import com.zakharenkov.shop.database.repository.CustomProductRepositoryImpl;
 import com.zakharenkov.shop.service.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
-@SessionAttributes("filter")
+@SessionAttributes({"filter", "currentUser"})
 public class ProductController {
 
     @Autowired
@@ -38,8 +32,9 @@ public class ProductController {
     }
 
     @GetMapping("/products/{page}")
-    public String getProducts(Model model, @PathVariable("page") String page) {
+    public String getProducts(Model model, @PathVariable("page") String page, @ModelAttribute("currentUser") User user) {
         FilterDto filter = getFilter(model, page);
+
         loadAllAttribute(filter, model);
         return "products";
     }

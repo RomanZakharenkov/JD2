@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface UserService extends UserDetailsService {
 
     Optional<User> findUserById(Long id);
+
+    Optional<User> findUserByEmail(String email);
 }

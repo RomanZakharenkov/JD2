@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
@@ -24,6 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .permitAll()
                 .and()
                     .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/start", true)
                 .and()
                     .httpBasic()
                 .and()
@@ -31,5 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .csrf().disable();
         http.userDetailsService(userDetailsService);
+        SecurityContext context = SecurityContextHolder.getContext();
+        System.out.println();
     }
 }

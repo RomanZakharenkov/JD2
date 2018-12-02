@@ -5,6 +5,7 @@
     <title>#{products.allProducts}</title>
 </head>
 <body style="background-color: #cccccc">
+<div th:insert="~{header}"></div>
 <form th:action="@{/products}" th:method="post" th:object="${filter}">
     <table style="background-color: white; border-radius: 15px; width: 100%">
         <tr>
@@ -15,13 +16,12 @@
                        name="form"
                        value="Применить">
             </td>
-            <!--TODO: добавить сброс фильтра-->
             <td>
                 <a th:href="@{/clear-filter}" style="color: black">Сбросить фильтр</a>
             </td>
         </tr>
         <tr>
-            <td align="left">Категория</td>
+            <td align="left" th:text="#{category}">Категория</td>
             <td align="left">
                 <input type="checkbox"
                        th:value="1"
@@ -112,7 +112,7 @@
                 <p>Цена</p>
                 <span th:text="*{price}">
                 </span>
-                <span th:if="${currentUser} != null">
+                <span th:if="${currentUser != null}">
                         <input type="hidden" name="productId" value="${product.id}"/>
                         <input type="hidden" name="form" value="basket"/>
                         <input type="submit"
@@ -124,5 +124,6 @@
     </table>
     <br>
 </form>
+<div th:insert="~{footer}"></div>
 </body>
 </html>

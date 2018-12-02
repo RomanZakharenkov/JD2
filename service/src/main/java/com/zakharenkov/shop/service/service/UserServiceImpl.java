@@ -26,6 +26,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Optional<User> findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
         return userRepository.findByEmail(name)
                 .map(userDetailsConverter::convert)
