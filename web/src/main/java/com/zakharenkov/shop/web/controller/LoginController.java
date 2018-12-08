@@ -33,7 +33,9 @@ public class LoginController {
         Optional<User> userByEmail = userService.findUserByEmail(userName);
 
         if (userByEmail.isPresent()) {
-            model.addAttribute("currentUser", userByEmail.get());
+            User user = userByEmail.get();
+
+            model.addAttribute("currentUser", user);
             return "redirect:/products";
         } else {
             return "redirect:/login?error";

@@ -152,6 +152,10 @@
                                <!--style="background-color: #aa0005; font-size: 30px; border-bottom-color: #aa0005; color: white; border-radius: 15px"-->
                                <!--th:value="#{product.toCart}">-->
                     <button type="submit" class="btn btn-outline-success" th:text="#{product.toCart}"></button>
+                    <a th:href="@{/favorite/add/{id}(id=*{id})}">
+                                <button type="button" class="btn btn-outline-primary"
+                                        th:text="#{favorite.add}"></button>
+                            </a>
                 </span>
             </td>
         </tr>

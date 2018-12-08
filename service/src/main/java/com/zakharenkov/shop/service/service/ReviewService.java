@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @Transactional
 public class ReviewService {
@@ -15,6 +17,14 @@ public class ReviewService {
 
     public Review save(Review review) {
         return reviewRepository.save(review);
+    }
+
+    public void delete(Review review) {
+        reviewRepository.delete(review);
+    }
+
+    public Optional<Review> findById(Long id) {
+        return reviewRepository.findById(id);
     }
 
 }

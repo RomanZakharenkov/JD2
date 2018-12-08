@@ -43,7 +43,7 @@
     <tr th:if="*{number != null}">
         <td style="width: 30%"></td>
         <td style="width: 30%">
-            <span th:text="#{account.number}"></span>
+            <span th:if="*{number != null}" th:text="#{account.number}"></span>
         </td>
         <td style="width: 40%">
             <span th:text="*{number}"></span>
@@ -106,8 +106,10 @@
             <div th:each="lineItem : ${order.lineItems}">
                 <tr>
                     <td align="center">
-                        <span th:text="${lineItem.product.productDetail.brand}"> </span>
-                        <span th:text="${lineItem.product.productDetail.model}"></span>
+                        <a th:href="@{/product/{page}(page=${lineItem.product.id})}">
+                            <span th:text="${lineItem.product.productDetail.brand}"> </span>
+                            <span th:text="${lineItem.product.productDetail.model}"></span>
+                        </a>
                     </td>
                     <td align="center">
                         <span th:text="${lineItem.product.price}"></span>
@@ -134,16 +136,22 @@
         <table style="background-color: white; width: 100%; border-radius: 8px">
             <tr>
                 <td style="width: 30%" align="center">
-                    <span th:text="${review.product.productDetail.brand}"> </span>
-                    <span th:text="${review.product.productDetail.model}"></span>
+                    <a th:href="@{/product/{page}(page=${review.product.id})}">
+                        <span th:text="${review.product.productDetail.brand}"> </span>
+                        <span th:text="${review.product.productDetail.model}"></span>
+                    </a>
                 </td>
                 <td style="width: 70%">
                     <span th:text="${review.date}"></span>
                 </td>
             </tr>
             <tr>
-                <td style="width: 10%"></td>
-                <td style="width: 90%">
+                <td style="width: 30%" align="center">
+                    <a th:href="@{/review/delete/{id}(id=${review.id})}">
+                        <span th:text="#{review.delete}"> </span>
+                    </a>
+                </td>
+                <td style="width: 70%">
                     <span th:text="${review.text}"></span>
                 </td>
             </tr>
@@ -166,7 +174,10 @@
                 <td align="center">
                     <a th:href="@{/product/{page}(page=${product.id})}">
                         <span th:text="${product.productDetail.brand}"> </span>
-                        <span th:text="${product.productDetail.model}"></span>
+                        <span th:text="${product.productDetail.model}"> </span>
+                    </a>
+                    <a th:href="@{/favorite/delete/{id}(id=${product.id})}">
+                        <span th:text="#{review.delete}"> </span>
                     </a>
                 </td>
             </tr>

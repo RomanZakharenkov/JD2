@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Controller
 @SessionAttributes({"currentUser", "newReview"})
@@ -29,6 +30,15 @@ public class ReviewController {
 
     @Autowired
     private UserService userService;
+
+    @GetMapping("/review/delete/{id}")
+    public String delete(@PathVariable("id") String id) {
+        Review review = reviewService.findById(Long.parseLong(id)).orElse(null);
+        if (review != null) {
+            reviewService.delete(review);
+        }
+        return "redirect:/account";
+    }
 
     @GetMapping("/addReview/{id}")
     public String get(Model model, @PathVariable("id") String id) {
