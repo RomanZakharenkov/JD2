@@ -32,7 +32,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/{page}")
-    public String getProducts(Model model, @PathVariable("page") String page, @ModelAttribute("currentUser") User user) {
+    public String getProducts(Model model, @PathVariable("page") String page) {
         FilterDto filter = getFilter(model, page);
 
         loadAllAttribute(filter, model);

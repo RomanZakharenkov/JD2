@@ -2,44 +2,41 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>RZ Market</title>
 </head>
 <body style="background-color: #cccccc">
-<!--TODO: HEADER-->
-<br>
-<h1 style="font-size: 300%" align="center">
-    <span>Welcome</span>
-</h1>
+<div th:insert="~{header}"></div>
+<br><br><br>
 <form th:action="@{/login}" th:method="post">
-    <table style="background-color: white; border-radius: 15px" align="center">
+    <table style="background-color: white; border-radius: 8px; width: 50%" align="center">
         <tr>
             <td>
-                <span>Login</span>
+                <h1 style="font-size: 300%" align="center">
+                    <span th:text="#{login.welcome}"></span>
+                </h1><br><br>
             </td>
-            <td>
+        </tr>
+        <tr>
+            <td align="center">
+                <span th:text="#{login.email}"></span>
                 <input type="text" name="username">
             </td>
         </tr>
         <tr>
-            <td>
-                <span>Password</span>
-            </td>
-            <td>
+            <td align="center">
+                <span th:text="#{login.password}"></span>
                 <input type="password" name="password">
             </td>
         </tr>
         <tr>
-            <td>
-                <a th:href="@{/registration}">Registration</a>
-            </td>
             <td align="center">
-                <input type="submit" style="background-color: #aa0005; font-size: 20px; border-bottom-color: #aa0005; color: white; border-radius: 15px"
-                th:value="Login">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <a th:href="@{/products}">Next</a>
+                <a th:href="@{/registration}">
+                    <button type="button" class="btn btn-outline-primary" th:text="#{login.registration}"></button>
+                </a>
+                <button type="submit" class="btn btn-outline-success" th:text="#{login.button}"></button>
+                <a th:href="@{/products}">
+                    <button type="button" class="btn btn-outline-secondary" th:text="#{login.next}"></button>
+                </a>
             </td>
         </tr>
     </table>

@@ -1,7 +1,9 @@
 package com.zakharenkov.shop.service.service;
 
+import com.zakharenkov.shop.database.model.Role;
 import com.zakharenkov.shop.database.model.User;
 import com.zakharenkov.shop.database.repository.UserRepository;
+import com.zakharenkov.shop.service.dto.UserRegistrationDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,6 +30,24 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> findUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User saveUser(UserRegistrationDto userDto) {
+        User user = User.builder()
+                .firstName(userDto.getFirstName())
+                .lastName(userDto.getLastName())
+                .email(userDto.getEmail())
+                .password(userDto.getPassword())
+                .number(userDto.getNumber())
+                .role(Role.USER)
+                .build();
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User update(User user) {
+        return userRepository.save(user);
     }
 
     @Override

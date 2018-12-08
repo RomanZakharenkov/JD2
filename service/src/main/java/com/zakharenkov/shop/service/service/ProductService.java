@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import static com.zakharenkov.shop.database.repository.CustomProductRepositoryImpl.ANY;
@@ -35,5 +36,9 @@ public class ProductService {
         Set<String> allBrand = productRepository.findAllBrand();
         allBrand.add(ANY);
         return allBrand;
+    }
+
+    public Optional<Product> getById(Long id) {
+        return productRepository.findById(id);
     }
 }
