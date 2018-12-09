@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
-@SessionAttributes({"filter", "currentUser"})
+@SessionAttributes({"filter", "currentUser", "basket"})
 public class ProductController {
 
     @Autowired

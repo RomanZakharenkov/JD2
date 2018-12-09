@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Builder
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode()
 @AllArgsConstructor(staticName = "of")
 @Entity
 @Table(name = "line_item", schema = "shop")

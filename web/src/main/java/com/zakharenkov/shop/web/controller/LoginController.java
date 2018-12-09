@@ -1,5 +1,7 @@
 package com.zakharenkov.shop.web.controller;
 
+import com.zakharenkov.shop.database.model.LineItem;
+import com.zakharenkov.shop.database.model.Order;
 import com.zakharenkov.shop.database.model.User;
 import com.zakharenkov.shop.service.dto.UserRegistrationDto;
 import com.zakharenkov.shop.service.service.UserService;
@@ -12,10 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
-@SessionAttributes("currentUser")
+@SessionAttributes({"currentUser", "basket"})
 public class LoginController {
 
     @Autowired
@@ -34,8 +38,13 @@ public class LoginController {
 
         if (userByEmail.isPresent()) {
             User user = userByEmail.get();
-
+            Set<LineItem> lineItems = new HashSet<>();
+            Order order = Order.builder()
+                    .user(user)
+                    .lineItems(lineItems)
+                    .build();
             model.addAttribute("currentUser", user);
+            model.addAttribute("basket", order);
             return "redirect:/products";
         } else {
             return "redirect:/login?error";

@@ -27,7 +27,10 @@
             </td>
             <td style="width: 10%">
                 <div th:if="${currentUser != null}" align="center">
-                    <span style="color: white; font-weight: bold" th:text="#{header.basket}"></span>
+                    <a th:href="@{/basket}" style="color: white; font-weight: bold" th:text="#{header.basket}"></a>
+                    <!--<br>-->
+                    <!--<span style="color: white" th:text="${basket.lineItems.size()}"></span>-->
+                    <!--<span style="color: white" th:text="#{header.basket.count}"></span>-->
                 </div>
             </td>
             <td style="width: 10%">
