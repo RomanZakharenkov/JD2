@@ -4,6 +4,8 @@ import com.zakharenkov.shop.database.dto.FilterDto;
 import com.zakharenkov.shop.database.model.Product;
 import com.zakharenkov.shop.database.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +16,7 @@ import java.util.Set;
 import static com.zakharenkov.shop.database.repository.CustomProductRepositoryImpl.ANY;
 
 @Service
+@CacheConfig(cacheNames = "products")
 @Transactional
 public class ProductService {
 
@@ -28,6 +31,7 @@ public class ProductService {
         return productRepository.getCountProduct(filter);
     }
 
+    @Cacheable()
     public List<Product> findByFilter(FilterDto filter) {
         return productRepository.findByFilter(filter);
     }
@@ -38,6 +42,7 @@ public class ProductService {
         return allBrand;
     }
 
+    @Cacheable()
     public Optional<Product> getById(Long id) {
         return productRepository.findById(id);
     }

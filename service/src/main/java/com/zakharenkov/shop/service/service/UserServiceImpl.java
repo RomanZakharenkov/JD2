@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.zakharenkov.shop.service.converter.UserDetailsConverter;
@@ -21,6 +23,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserDetailsConverter userDetailsConverter;
+//    private final PasswordEncoder passwordEncoder;
 
     @Override
     public Optional<User> findUserById(Long id) {
@@ -38,6 +41,7 @@ public class UserServiceImpl implements UserService {
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
                 .email(userDto.getEmail())
+//                .password(passwordEncoder.encode(userDto.getPassword()))
                 .password(userDto.getPassword())
                 .number(userDto.getNumber())
                 .role(Role.USER)

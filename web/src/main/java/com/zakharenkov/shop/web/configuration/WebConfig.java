@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @ComponentScan(basePackages = {"com.zakharenkov.shop.web"})
 @EnableWebMvc
-@Import(value = {ServiceConfiguration.class, ThymeleafConfig.class})
+@Import(value = {ServiceConfiguration.class, ThymeleafConfig.class, SecurityConfig.class})
 public class WebConfig implements WebMvcConfigurer{
 
     @Override
