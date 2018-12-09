@@ -4,6 +4,7 @@ import com.zakharenkov.shop.database.dto.FilterDto;
 import com.zakharenkov.shop.database.model.Product;
 import com.zakharenkov.shop.database.model.User;
 import com.zakharenkov.shop.database.repository.CustomProductRepositoryImpl;
+import com.zakharenkov.shop.service.dto.ProductDto;
 import com.zakharenkov.shop.service.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

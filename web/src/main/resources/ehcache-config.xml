@@ -12,6 +12,6 @@
     <cache name="products"
            maxElementsInMemory="500"
            eternal="false"
-           timeToLiveSeconds="600"
-           timeToIdleSeconds="500"/>
+           timeToLiveSeconds="10"
+           timeToIdleSeconds="10"/>
 </ehcache>

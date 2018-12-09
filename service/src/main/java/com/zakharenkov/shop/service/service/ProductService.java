@@ -5,6 +5,7 @@ import com.zakharenkov.shop.database.model.Product;
 import com.zakharenkov.shop.database.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +30,11 @@ public class ProductService {
 
     public Long getCountProduct(FilterDto filter) {
         return productRepository.getCountProduct(filter);
+    }
+
+    @CacheEvict
+    public Product update(Product product) {
+        return productRepository.save(product);
     }
 
     @Cacheable()
