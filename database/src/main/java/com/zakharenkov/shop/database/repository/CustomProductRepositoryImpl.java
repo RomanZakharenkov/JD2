@@ -5,11 +5,14 @@ import com.zakharenkov.shop.database.model.Category_;
 import com.zakharenkov.shop.database.model.Product;
 import com.zakharenkov.shop.database.model.ProductDetail_;
 import com.zakharenkov.shop.database.model.Product_;
+import com.zakharenkov.shop.database.model.Storage;
+import com.zakharenkov.shop.database.model.Storage_;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -89,6 +92,8 @@ public class CustomProductRepositoryImpl implements CustomProductRepository {
                 predicates.add(cb.equal(root.get(Product_.category).get(Category_.id), filter.getAudio()));
             }
         }
+        Join<Product, Storage> storageJoin = root.join(Product_.storage);
+        predicates.add(cb.gt(storageJoin.get(Storage_.count), 0));
 
         return predicates;
     }

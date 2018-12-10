@@ -7,29 +7,27 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+import java.util.logging.Logger;
+
 @Component
 @Aspect
 public class FirstAspect {
 
-//    @Pointcut("execution(public * *..service.service.*.*(..))")
-//    public void addLogging() {
-//    }
+    private static final Logger LOGGER = Logger.getLogger("Logger");
 
     @Around("execution(public * *..service.service.*.*(..))")
-//    @Around("execution(public Optional<Product> getById(Long))")
     public Object aroundLogging(ProceedingJoinPoint joinPoint) throws Throwable {
-        System.out.println("before ...");
+        String name = joinPoint.getSignature().getName();
+        LOGGER.info("Method" + name + " started");
         Object result;
         try {
             result = joinPoint.proceed();
         } catch (Throwable ex) {
-            System.out.println("catch exception");
+            LOGGER.info("Method " + name + "processing Exception ");
             throw ex;
-        } finally {
-            System.out.println("finally ...");
         }
         System.out.println("last step");
-
+        LOGGER.info("Method " + name + " done");
         return result;
     }
 }

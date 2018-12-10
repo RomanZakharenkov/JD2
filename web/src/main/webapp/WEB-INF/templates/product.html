@@ -35,12 +35,58 @@
         </td>
     </tr>
     <tr>
-        <td colspan="2" align="center" style="font-size: 26px">
+        <td align="center" style="font-size: 26px">
             <span th:text="#{product.price}"></span>
             <br>
             <span th:text="${product.price}"></span>
             <span> </span>
             <span th:text="#{product.priceType}"></span>
+        </td>
+        <td>
+            <div th:if="${currentUser != null}">
+                <div th:if="${product.storage == null}">
+                    <a th:href="@{/favorite/add/{id}(id=${product.id})}">
+                        <button type="button" class="btn btn-outline-primary"
+                                th:text="#{favorite.add}"></button>
+                    </a>
+                    <a th:href="@{/addReview/{id}(id=${product.id})}">
+                        <button type="button" class="btn btn-outline-secondary"
+                                th:text="#{product.review.add}"></button>
+                    </a>
+                    <br>
+                    <span th:text="#{product.storageEmpty}" style="font-weight: bold"></span>
+                </div>
+                <div th:if="${product.storage != null}">
+                    <div th:if="${product.storage.count > 0}">
+                        <a th:href="@{/basket/add/{id}(id=${product.id})}">
+                            <button type="button" class="btn btn-outline-success"
+                                    th:text="#{product.toBasket}"></button>
+                        </a>
+                        <a th:href="@{/favorite/add/{id}(id=${product.id})}">
+                            <button type="button" class="btn btn-outline-primary"
+                                    th:text="#{favorite.add}"></button>
+                        </a>
+                        <a th:href="@{/addReview/{id}(id=${product.id})}">
+                            <button type="button" class="btn btn-outline-secondary"
+                                    th:text="#{product.review.add}"></button>
+                        </a>
+                        <br>
+                        <span th:text="#{product.storage}" style="font-weight: bold"></span>
+                        <span th:text="${product.storage.count}" style="font-weight: bold"></span>
+                        <span th:text="#{header.basket.count}" style="font-weight: bold"></span>
+                    </div>
+                </div>
+            </div>
+        </td>
+        <td th:if="${currentUser.role.name == 'ADMIN'}">
+            <a th:href="@{/product/{id}/edit(id=${product.id})}">
+                <button type="button" class="btn btn-outline-secondary"
+                        th:text="#{product.edit}"></button>
+            </a>
+            <a th:href="@{/product/{id}/addStorage(id=${product.id})}">
+                <button type="button" class="btn btn-outline-secondary"
+                        th:text="#{product.addStorage}"></button>
+            </a>
         </td>
     </tr>
 </table>
@@ -48,13 +94,8 @@
 <div>
     <table style="background-color: black; color: white; width: 100%; border-radius: 8px">
         <tr>
-            <td align="center" style="width: 80%; font-weight: bold">
+            <td colspan="2" align="center" style="width: 80%; font-weight: bold">
                 <span th:text="#{product.review}"></span>
-            </td>
-            <td align="center" style="width: 20%; font-weight: bold">
-                <a th:href="@{/addReview/{id}(id=${product.id})}"
-                   style="font-size: 16px; color: white">
-                    <span th:text="#{product.review.add}"></span>
             </td>
         </tr>
     </table>

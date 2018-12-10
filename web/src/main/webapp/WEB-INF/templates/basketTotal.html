@@ -7,12 +7,6 @@
 <body style="background-color: #cccccc">
 <div th:insert="~{header}"></div>
 <br>
-<div th:if="${basket.lineItems.size() == 0}" align="center">
-    <span th:text="#{basket.emptyLineItems}"></span>
-    <br>
-    <a th:href="@{/products}">
-        <button type="button" class="btn btn-outline-primary" th:text="#{basket.toProducts}"></button>
-</div>
 <div th:if="${basket.lineItems.size() > 0}">
     <table style="background-color: white; width: 100%; border-radius: 8px">
         <tr>
@@ -45,13 +39,12 @@
         <br>
     </div>
     <div align="center">
-        <a th:href="@{/basket/sale}">
+        <span th:text="#{total.price}" style="font-weight: bold"></span>
+        <span th:text="${basket.price}" style="font-weight: bold"></span>
+        <span th:text="#{product.priceType}" style="font-weight: bold"></span>
+        <a th:href="@{/basket/total}">
             <button type="button" class="btn btn-outline-primary"
-                    th:text="#{login.next}"></button>
-        </a>
-        <a th:href="@{/products}">
-            <button type="button" class="btn btn-outline-primary"
-                    th:text="#{basket.toProducts}"></button>
+                    th:text="#{order.done}"></button>
         </a>
     </div>
 </div>

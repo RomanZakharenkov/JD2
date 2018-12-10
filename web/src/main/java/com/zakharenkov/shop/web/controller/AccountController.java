@@ -1,6 +1,7 @@
 package com.zakharenkov.shop.web.controller;
 
 import com.zakharenkov.shop.database.model.User;
+import com.zakharenkov.shop.service.dto.PasswordDto;
 import com.zakharenkov.shop.service.dto.UserRegistrationDto;
 import com.zakharenkov.shop.service.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,16 +36,32 @@ public class AccountController {
 
     @PostMapping("/account/edit")
     public String getForm(Model model, UserRegistrationDto user) {
-        System.out.println();
         User currentUser = (User) model.asMap().get("currentUser");
         currentUser.setEmail(user.getEmail());
         currentUser.setFirstName(user.getFirstName());
         currentUser.setLastName(user.getLastName());
-        currentUser.setPassword(user.getPassword());
         currentUser.setNumber(user.getNumber());
         userService.update(currentUser);
+        return "accountSuccess";
+    }
+
+    @GetMapping("/account/password")
+    public String getPageChangePassword(Model model) {
+        PasswordDto passwordDto = PasswordDto.builder().build();
+        model.addAttribute("password", passwordDto);
+        return "accountChangePassword";
+    }
+
+    @PostMapping("/account/password")
+    public String getFormPassword(Model model, PasswordDto passwordDto) {
         System.out.println();
-        //        TODO: валидация повторного пароля
-        return "header";
+        User currentUser = (User) model.asMap().get("currentUser");
+        if (passwordDto.getNewPassword().equals(passwordDto.getNewPasswordRepeat()) && currentUser.getPassword().equals(passwordDto.getOldPassword())) {
+            currentUser.setPassword(passwordDto.getNewPassword());
+            currentUser = userService.update(currentUser);
+            return "accountSuccess";
+        } else {
+            return "redirect:/account/password";
+        }
     }
 }

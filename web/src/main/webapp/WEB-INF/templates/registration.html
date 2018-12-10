@@ -56,7 +56,13 @@
         </tr>
         <tr>
             <td colspan="2" align="center">
+                <a th:href="@{/login}">
+                    <button type="button" class="btn btn-outline-primary" th:text="#{login.button}"></button>
+                </a>
                 <button type="submit" class="btn btn-outline-success" th:text="#{registration.done}"></button>
+                <a th:href="@{/products}">
+                    <button type="button" class="btn btn-outline-secondary" th:text="#{login.next}"></button>
+                </a>
             </td>
         </tr>
     </table>
