@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.OptimisticLockType;
+import org.hibernate.annotations.OptimisticLocking;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -21,6 +23,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,6 +35,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "product", schema = "shop")
+@OptimisticLocking(type = OptimisticLockType.VERSION)
 public class Product implements BaseEntity<Long> {
 
     @Id
@@ -51,6 +55,9 @@ public class Product implements BaseEntity<Long> {
     @OneToOne(mappedBy = "product")
     private Storage storage;
 
+    @Version
+    private Long version;
+
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     private Set<Review> reviews = new HashSet<>();
 
@@ -62,4 +69,11 @@ public class Product implements BaseEntity<Long> {
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<User> users = new HashSet<>();
+
+    public Product(ProductDetail productDetail, Integer price, Category category, Storage storage) {
+        this.productDetail = productDetail;
+        this.price = price;
+        this.category = category;
+        this.storage = storage;
+    }
 }

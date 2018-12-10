@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import java.util.Optional;
 
 @Controller
-@SessionAttributes("currentUser")
+@SessionAttributes({"currentUser", "product"})
 public class ProductInfoController {
 
     @Autowired
@@ -35,8 +35,8 @@ public class ProductInfoController {
     }
 
     @GetMapping("product/{id}/edit")
-    public String getEditPage(Model model, @PathVariable("id") String id) {
-        Product product = productService.getById(Long.parseLong(id)).get();
+    public String getEditPage(Model model, @SessionAttribute("product") Product product, @PathVariable("id") String id) {
+        product = productService.getById(Long.parseLong(id)).get();
         ProductDto productDto = ProductDto.builder()
                 .brand(product.getProductDetail().getBrand())
                 .model(product.getProductDetail().getModel())
@@ -53,9 +53,8 @@ public class ProductInfoController {
     }
 
     @PostMapping("/product/{id}/edit")
-    public String getForm(Model model, @PathVariable("id") String id, ProductDto productDto) {
+    public String getForm(Model model, @SessionAttribute("product") Product product, @PathVariable("id") String id, ProductDto productDto) {
         System.out.println();
-        Product product = productService.getById(Long.parseLong(id)).get();
         ProductDetail productDetail = ProductDetail.builder()
                 .brand(productDto.getBrand())
                 .model(productDto.getModel())
@@ -78,7 +77,11 @@ public class ProductInfoController {
         }
         product.setCategory(category);
 
-        productService.update(product);
+        try {
+            productService.update(product);
+        } catch (Exception ex) {
+            return "productError";
+        }
 
         return "redirect:/product/" + id;
     }
