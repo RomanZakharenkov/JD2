@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>RZ Market</title>
+</head>
+<body style="background-color: #cccccc">
+<div th:insert="~{header}"></div>
+<br>
+<form th:action="@{/product/{id}/addStorage(id=${product.id})}" th:method="post" th:object="${count}">
+    <table style="background-color: white; width: 100%; border-radius: 8px">
+        <tr>
+            <td>
+                <input type="number" th:value="*{count}" th:field="*{count}" style="width: 100%; height: 30%">
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <button type="submit" class="btn btn-outline-success" th:text="#{product.addStorage}"></button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

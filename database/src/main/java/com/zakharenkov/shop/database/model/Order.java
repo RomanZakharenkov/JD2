@@ -7,10 +7,12 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,6 +48,9 @@ public class Order implements BaseEntity<Long> {
     @Column(name = "date", nullable = false)
     private LocalDate date;
 
-    @OneToMany(mappedBy = "order")
+    @Column(name = "price", nullable = false)
+    private Integer price;
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
     private Set<LineItem> lineItems;
 }

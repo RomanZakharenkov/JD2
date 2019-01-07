@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>RZ Market</title>
+</head>
+<body style="background-color: #cccccc">
+<div th:insert="~{header}"></div>
+<br>
+<div th:if="${basket.lineItems.size() == 0}" align="center">
+    <span th:text="#{basket.emptyLineItems}"></span>
+    <br>
+    <a th:href="@{/products}">
+        <button type="button" class="btn btn-outline-primary" th:text="#{basket.toProducts}"></button>
+</div>
+<div th:if="${basket.lineItems.size() > 0}">
+    <table style="background-color: white; width: 100%; border-radius: 8px">
+        <tr>
+            <td style="width: 60%; font-weight: bold" align="center" th:text="#{basket.product}"></td>
+            <td style="width: 10%; font-weight: bold" align="center" th:text="#{basket.product.count}"></td>
+            <td style="width: 30%; font-weight: bold" align="center" th:text="#{basket.product.price}"></td>
+        </tr>
+    </table>
+    <br>
+    <div th:each="item : ${basket.lineItems}">
+        <table style="background-color: white; width: 100%; border-radius: 8px">
+            <tr>
+                <td style="width: 20%" align="center">
+                    <input type="image" th:src="*{item.product.productDetail.image}" width="70%">
+                </td>
+                <td style="width: 40%" align="center">
+                    <span th:text="${item.product.productDetail.brand}"></span>
+                    <span th:text="${item.product.productDetail.model}"></span>
+                </td>
+                <td style="width: 10%" align="center">
+                    <span th:text="${item.count}"></span>
+                    <span th:text="#{header.basket.count}"></span>
+                </td>
+                <td style="width: 30%" align="center">
+                    <span th:text="${item.product.price}"></span>
+                    <span th:text="#{product.priceType}"></span>
+                </td>
+            </tr>
+        </table>
+        <br>
+    </div>
+    <div align="center">
+        <a th:href="@{/basket/sale}">
+            <button type="button" class="btn btn-outline-primary"
+                    th:text="#{login.next}"></button>
+        </a>
+        <a th:href="@{/products}">
+            <button type="button" class="btn btn-outline-primary"
+                    th:text="#{basket.toProducts}"></button>
+        </a>
+    </div>
+</div>
+<br>
+</body>
+</html>

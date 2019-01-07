@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>RZ Market</title>
+</head>
+<body style="background-color: #cccccc">
+<div th:insert="~{header}"></div>
+<br>
+<div align="center">
+    <span style="font-weight: bold" th:text="#{product.added}"></span>
+    <br>
+    <a th:href="@{/products}">
+        <button type="button" class="btn btn-outline-primary"
+                th:text="#{basket.toProducts}"></button>
+    </a>
+</div>
+</body>
+</html>
